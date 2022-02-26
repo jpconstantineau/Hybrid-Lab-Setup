@@ -1,0 +1,41 @@
+all:
+  hosts:
+
+    OCI-1:
+      pipelining: true
+      ansible_ssh_user: root
+      ansible_host: "$host1_public_ip"
+      ansible_ssh_port: 22
+
+      wireguard_ip: 192.168.0.1
+
+    PI-1:
+      pipelining: true
+      ansible_ssh_user: root
+      ansible_host: "$host2_public_ip"
+      ansible_ssh_port: 22
+
+      wireguard_ip: 192.168.0.2
+
+    PI-2:
+      pipelining: true
+      ansible_ssh_user: root
+      ansible_host: "$host3_public_ip"
+      ansible_ssh_port: 22
+
+      wireguard_ip: 192.168.0.3
+
+    PI-3:
+      pipelining: true
+      ansible_ssh_user: root
+      ansible_host: "$host3_public_ip"
+      ansible_ssh_port: 22  
+
+      wireguard_ip: 192.168.0.4
+
+  vars:
+    ansible_become_method: su 
+
+    wireguard_mask_bits: 24
+    wireguard_port: 51871
+

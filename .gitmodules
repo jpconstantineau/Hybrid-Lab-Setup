@@ -1,0 +1,6 @@
+[submodule "setup-hosts/automation-wireguard"]
+	path = setup-hosts/automation-wireguard
+	url = https://github.com/jawher/automation-wireguard.git
+[submodule "setup-hosts/k3s-ansible"]
+	path = setup-hosts/k3s-ansible
+	url = https://github.com/k3s-io/k3s-ansible.git
