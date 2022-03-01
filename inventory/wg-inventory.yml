@@ -1,0 +1,80 @@
+all:
+  children: 
+    cloud:
+      hosts:
+        oracle1:
+          pipelining: true
+          ansible_ssh_user: ubuntu
+          ansible_host: 150.230.28.56
+          ansible_ssh_port: 22
+          ansible_ssh_private_key_file: ~/.ssh/Oracle/ssh-key-2022-02-24.key
+          new_hostname: oracle1
+
+          wireguard_ip: 172.16.0.1
+
+        oracle2:
+          pipelining: true
+          ansible_ssh_user: ubuntu
+          ansible_host: 192.18.157.205
+          ansible_ssh_port: 22
+          ansible_ssh_private_key_file: ~/.ssh/Oracle/ssh-key-2022-02-28.key
+          new_hostname: oracle2 
+
+          wireguard_ip: 172.16.0.2
+
+    local:
+      hosts:
+        pios64-b84b:
+          pipelining: true
+          ansible_ssh_user: pi
+          ansible_host: 192.168.1.24
+          ansible_ssh_port: 22
+          ansible_ssh_private_key_file: ~/.ssh/local-pi-id_ed25519
+          new_hostname: pios64-b84b
+
+          wireguard_ip: 172.16.0.11
+
+        pios64-35aa:
+          pipelining: true
+          ansible_ssh_user: pi
+          ansible_host: 192.168.1.25
+          ansible_ssh_port: 22
+          ansible_ssh_private_key_file: ~/.ssh/local-pi-id_ed25519
+          new_hostname: pios64-35aa
+
+          wireguard_ip: 172.16.0.12
+
+        pios64-358d:
+          pipelining: true
+          ansible_ssh_user: pi
+          ansible_host: 192.168.1.26
+          ansible_ssh_port: 22
+          ansible_ssh_private_key_file: ~/.ssh/local-pi-id_ed25519
+          new_hostname: pios64-358d 
+
+          wireguard_ip: 172.16.0.13  
+
+    master:
+      hosts:
+        oracle1:
+        pios64-b84b:
+
+    node:
+      hosts:
+        oracle2:
+        pios64-35aa:
+        pios64-358d:
+
+    k3s_cluster:
+      children: 
+        master:
+        node:
+
+
+
+  vars:
+    ansible_become_method: sudo 
+    ufw_enabled: false
+    wireguard_mask_bits: 24
+    wireguard_port: 51871
+
