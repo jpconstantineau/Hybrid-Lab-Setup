@@ -3,12 +3,12 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: jpto-dev-cert-staging
-  namespace: default
+  namespace: jpto-dev
 spec:
   secretName: jpto-dev-tls-staging
   issuerRef:
     name: letsencrypt-staging
     kind: ClusterIssuer
-  commonName: jpto.dev
+  commonName: www.jpto.dev
   dnsNames:
-  - jpto.dev
+  - www.jpto.dev
