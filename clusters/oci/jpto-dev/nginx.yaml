@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jpto-nginx
-  namespace: jpto.dev
+  namespace: jpto-dev
   labels:
     app: jpto-nginx
 spec:
@@ -33,7 +33,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: jpto-nginx-service
-  namespace: jpto.dev
+  namespace: jpto-dev
 spec:
   selector:
     app: jpto-nginx
@@ -45,7 +45,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: jpto-nginx-ingress
-  namespace: jpto.dev
+  namespace: jpto-dev
   annotations:
     kubernetes.io/ingress.class: "traefik"
     cert-manager.io/cluster-issuer: letsencrypt-production
