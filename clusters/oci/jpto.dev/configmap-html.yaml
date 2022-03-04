@@ -30,4 +30,5 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  namespace: jpto.dev
   name: jpto-html-files
