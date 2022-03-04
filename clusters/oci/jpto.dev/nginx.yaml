@@ -1,0 +1,67 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jpto-nginx
+  namespace: jpto.dev
+  labels:
+    app: jpto-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: jpto-nginx
+  template:
+    metadata:
+      labels:
+        app: jpto-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - name: jpto-volume
+            mountPath: /usr/share/nginx/html
+      volumes:
+      - name: jpto-volume
+        configMap:
+          name: jpto-html-files
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jpto-nginx-service
+  namespace: jpto.dev
+spec:
+  selector:
+    app: jpto-nginx
+  ports:
+    - protocol: TCP
+      port: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jpto-nginx-ingress
+  namespace: jpto.dev
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    cert-manager.io/cluster-issuer: letsencrypt-production
+spec:
+  rules:
+  - host: jpto.dev
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: jpto-nginx-service
+            port: 
+              number: 80
+  tls:
+  - hosts: 
+    - jpto.dev
+    secretName: jpto-dev-tls-production

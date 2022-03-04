@@ -1,0 +1,1 @@
+kubectl create configmap jpto-html-files --from-file files -o yaml --dry-run=client | tee configmap-html.yaml
