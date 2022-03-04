@@ -1,8 +1,0 @@
-    - name: remove unwanted packages
-      apt:
-        name: 
-          - cloud-init
-          - snapd
-          - gnome-software-plugin-snap
-        state: absent
-        purge: yes
