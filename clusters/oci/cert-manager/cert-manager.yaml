@@ -8,15 +8,21 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.jetstack.io
+      # renovate: registryUrl=https://charts.jetstack.io/
       chart: cert-manager
-      version: 1.7.1
+      version: v1.7.1
       sourceRef:
         kind: HelmRepository
-        name: cert-manager
+        name: jetstack-charts
         namespace: flux-system
       interval: 5m
+
+  install:
+    createNamespace: true
+    crds: CreateReplace
+
+  upgrade:
+    crds: CreateReplace
+
   values:
-    ingress:
-      enabled: true
     installCRDs: true
