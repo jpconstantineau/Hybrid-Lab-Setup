@@ -51,7 +51,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
   rules:
-  - host: jpto.dev
+  - host: www.jpto.dev
     http:
       paths:
       - pathType: Prefix
@@ -63,5 +63,5 @@ spec:
               number: 80
   tls:
   - hosts: 
-    - jpto.dev
+    - www.jpto.dev
     secretName: jpto-dev-tls-production
