@@ -5,7 +5,7 @@ metadata:
   name: jpto-dev-cert-production
   namespace: jpto-dev
 spec:
-  secretName: jpto-dev-tls-production
+  secretName: jpto-dev-cert-production
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
