@@ -5,5 +5,5 @@ flux bootstrap github \
   --network-policy=false \
   --owner=jpconstantineau \
   --repository=Hybrid-Lab-Setup \
-  --path=clusters/oci \
+  --path=clusters/oci3 \
   --personal

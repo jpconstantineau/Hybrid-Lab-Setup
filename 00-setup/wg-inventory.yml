@@ -1,0 +1,58 @@
+all:
+  children: 
+    cloud:
+      hosts:
+        OCI3-0:
+          pipelining: true
+          ansible_ssh_user: ubuntu
+          ansible_host: 150.230.26.200
+          ansible_ssh_port: 22
+          ansible_ssh_private_key_file: ~/.ssh/local-pi-id_ed25519
+          new_hostname: OCI3-0
+
+          wireguard_ip: 172.16.0.1
+
+        OCI3-1:
+          pipelining: true
+          ansible_ssh_user: ubuntu
+          ansible_host: 192.18.155.54
+          ansible_ssh_port: 22
+          ansible_ssh_private_key_file: ~/.ssh/local-pi-id_ed25519
+          new_hostname: OCI3-1 
+
+          wireguard_ip: 172.16.0.2
+
+        OCI3-2:
+          pipelining: true
+          ansible_ssh_user: ubuntu
+          ansible_host: 140.238.154.101
+          ansible_ssh_port: 22
+          ansible_ssh_private_key_file: ~/.ssh/local-pi-id_ed25519
+          new_hostname: OCI3-2 
+
+          wireguard_ip: 172.16.0.3
+
+
+    master:
+      hosts:
+        oracle1:
+        pios64-b84b:
+
+    node:
+      hosts:
+        oracle2:
+        pios64-35aa:
+        pios64-358d:
+
+    k3s_cluster:
+      children: 
+        master:
+        node:
+
+
+
+  vars:
+    ansible_become_method: sudo 
+    ufw_enabled: false
+    wireguard_mask_bits: 24
+    wireguard_port: 51871
