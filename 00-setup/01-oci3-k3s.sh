@@ -17,7 +17,7 @@ k3sup install \
   --cluster \
   --user $USER \
   --ip $NODE_1 \
-  --k3s-version $K8SVERSION
+  --k3s-version $K8SVERSION \
   --ssh-key $HOME/key
 
 
@@ -30,7 +30,7 @@ k3sup join \
   --user $USER \
   --server-user $USER \
   --server-ip $NODE_1 \
-  --k3s-version $K8SVERSION
+  --k3s-version $K8SVERSION \
   --ssh-key $HOME/key
 
 
@@ -43,7 +43,7 @@ k3sup join \
   --user $USER \
   --server-user $USER \
   --server-ip $NODE_1 \
-  --k3s-version $K8SVERSION
+  --k3s-version $K8SVERSION \
   --ssh-key $HOME/key
 
 echo "Set your KUBECONFIG"
